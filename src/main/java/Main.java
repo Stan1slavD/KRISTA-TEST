@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         // Из-за проблем с java окружением на моем ПК (при запуске через терминал ничего не происходит и ничего не выводится)
-        // Пришлось сделать выбор файла через консоль
+        // Пришлось сделать выбор файла через консоль 
         // Как должна была выглядеть команда запуска программы:
         // PS C:\krista-test> java .\Main.java C:\Code\krista-test\plants__001.xml
         // args[0]="plants__001.xml";
