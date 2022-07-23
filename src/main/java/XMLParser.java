@@ -10,6 +10,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class XMLParser {
+    public static final String COMMON = "COMMON";
+    public static final String BOTANICAL = "BOTANICAL";
+    public static final String ZONE = "ZONE";
+    public static final String LIGHT = "LIGHT";
+    public static final String PRICE = "PRICE";
+    public static final String AVAILABILITY = "AVAILABILITY";
+
     public static Catalog parse(File file, ArrayList<Plant> plants) {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         Document doc = null;
@@ -35,17 +42,17 @@ public class XMLParser {
                 if (plantsNode.item(i).getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
                     continue;
                 switch (plantsNode.item(i).getChildNodes().item(j).getNodeName()) {
-                    case "COMMON":
+                    case COMMON:
                         plant.setCommon(plantsNode.item(i).getChildNodes().item(j).getTextContent());
-                    case "BOTANICAL":
+                    case BOTANICAL:
                         plant.setBotanical(plantsNode.item(i).getChildNodes().item(j).getTextContent());
-                    case "ZONE":
+                    case ZONE:
                         plant.setZone(plantsNode.item(i).getChildNodes().item(j).getTextContent());
-                    case "LIGHT":
+                    case LIGHT:
                         plant.setLight(plantsNode.item(i).getChildNodes().item(j).getTextContent());
-                    case "PRICE":
+                    case PRICE:
                         plant.setPrice(plantsNode.item(i).getChildNodes().item(j).getTextContent());
-                    case "AVAILABILITY":
+                    case AVAILABILITY:
                         plant.setAvailability(plantsNode.item(i).getChildNodes().item(j).getTextContent());
                     default:
                         break;

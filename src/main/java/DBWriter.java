@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DBWriter {
     private static final String DB_USERNAME = "postgres";
@@ -39,5 +36,36 @@ public class DBWriter {
             }
         });
 
+    }
+
+    public static int getMaxPlantID()throws Exception{
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Statement statement = connection.createStatement();
+        String SQL_MAX_ID = "SELECT COUNT(common) AS res FROM f_cat_plants";
+        ResultSet res= statement.executeQuery(SQL_MAX_ID);
+        int max=0;
+        if (res.next())
+            max = res.getInt("res");
+        return max;
+    }
+    public static int getMaxCatalogID()throws Exception{
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Statement statement = connection.createStatement();
+        String SQL_MAX_ID = "SELECT MAX(id) AS res FROM d_cat_catalog";
+        ResultSet res= statement.executeQuery(SQL_MAX_ID);
+        int max=0;
+        if (res.next())
+            max = res.getInt("res");
+        return max;
     }
 }

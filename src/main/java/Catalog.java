@@ -6,7 +6,16 @@ public class Catalog {
     private String company;
     private ArrayList<Plant> plants;
     private int id;
-    private static int counter=0;
+    private static int counter;
+
+    static {
+        try {
+            counter = DBWriter.getMaxCatalogID()+1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public Catalog(String uuid, String date, String company, ArrayList<Plant> plants) {
         this.uuid = uuid;
         this.date = date;

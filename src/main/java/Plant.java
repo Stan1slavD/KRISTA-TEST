@@ -1,4 +1,3 @@
-import java.util.Date;
 
 public class Plant {
     private String common;
@@ -7,12 +6,16 @@ public class Plant {
     private String light;
     private String price;
     private String availability;
-    //private int catalog_id;
-    //private Date delivery_date;
-    //private String company;
-    //private String uuid;
     private  int id;
-    private static int counter=0;
+    private static int counter;
+
+    static {
+        try {
+            counter = DBWriter.getMaxPlantID();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public Plant(String common, String botanical, String zone, String light, String price, String availability) {
@@ -22,11 +25,6 @@ public class Plant {
         this.light = light;
         this.price = price;
         this.availability = availability;
-//        this.catalog_id = catalog_id;
-//        this.delivery_date = delivery_date;
-//        this.company = company;
-//        this.uuid = uuid;
-//        this.id = id;
         this.id=counter++;
     }
 
